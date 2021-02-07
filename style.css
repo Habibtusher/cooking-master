@@ -1,0 +1,17 @@
+.search{
+    margin: 50px;
+    text-align: center;
+}
+#mealBody{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+}
+#mealBody img{
+    width: 200px;
+    border-radius: 10px;
+}
+body{
+    width: 80%;
+    margin: 0 auto;
+}
