@@ -33,7 +33,6 @@ const showMeal = mealName => {
     }
     else {
         mealName.meals.forEach(name => {
-            console.log(name);
             const mealNames = document.createElement('div');
             mealNames.onclick = () => ingrident(name);
             const mealInfo = `
@@ -46,7 +45,6 @@ const showMeal = mealName => {
     }
 }
 const ingrident = name => {
-    console.log('object');
     const ingri = document.getElementById('ingrident');
     ingri.innerHTML = "";
     const ingridentInfo = document.createElement('div');
