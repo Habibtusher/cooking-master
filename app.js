@@ -1,6 +1,6 @@
 
 const getInput = input => {
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${input}`
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -10,42 +10,59 @@ const getInput = input => {
 const searchBtn = document.getElementById('search_button');
 searchBtn.addEventListener('click', () => {
     const input = document.getElementById('meal').value;
-    getInput(input)
+
+    if (input == "") {
+        alert("Invalid")
+    }
+    else
+        getInput(input)
 })
 
-
 const showMeal = mealName => {
-
-    const mealBody = document.getElementById("mealBody")
-    mealName.meals.forEach(name => {
-        console.log(name);
-        const mealNames = document.createElement('div');   
+    const mealBody = document.getElementById("mealBody");
+    const ingri = document.getElementById('ingrident');
+    mealBody.innerHTML = "";
+    ingri.innerHTML = "";
+    if (mealName.meals == null) {
+        const mealNames = document.createElement('div');
         const mealInfo = `
-        <img onclick="ingrident()" src="${name.strMealThumb}">
-        <h3>${name.strMeal}</h3>
+        <h1>Not Found</h1>  
      `
         mealNames.innerHTML = mealInfo;
         mealBody.appendChild(mealNames);
-        
-    });
+    }
+    else {
+        mealName.meals.forEach(name => {
+            console.log(name);
+            const mealNames = document.createElement('div');
+            mealNames.onclick = () => ingrident(name);
+            const mealInfo = `
+            <img  src="${name.strMealThumb}">
+            <h3>${name.strMeal}</h3>    
+         `
+            mealNames.innerHTML = mealInfo;
+            mealBody.appendChild(mealNames);
+        });
+    }
 }
-
-const ingrident=name=>{
-   console.log('object');
-    // const ingri =document.getElementById('ingrident');
-    // const ss=createElement('div');
-    // const ingridents=`
-    // <img src="${name.strMealThumb}">
-    // <h4> ${name.strIngredient1}</h4>
-    // <h4> ${name.strIngredient2}</h4>
-    // <h4> ${name.strIngredient3}</h4>
-    // <h4> ${name.strIngredient4}</h4>
-    // <h4> ${name.strIngredient5}</h4>
-    // <h4> ${name.strIngredient6}</h4>
-    // <h4> ${name.strIngredient7}</h4>
-    // <h4> ${name.strIngredient8}</h4>
-    // <h4> ${name.strIngredient9}</h4>
-    // `
-    // ss.innerHTML=ingridents;
-    // ingri.appendChild(ss);
+const ingrident = name => {
+    console.log('object');
+    const ingri = document.getElementById('ingrident');
+    ingri.innerHTML = "";
+    const ingridentInfo = document.createElement('div');
+    ingridentInfo.className = 'ingrident';
+    const ingridents = `
+    <img src="${name.strMealThumb}">
+    <h4> ${name.strIngredient1}</h4>
+    <h4> ${name.strIngredient2}</h4>
+    <h4> ${name.strIngredient3}</h4>
+    <h4> ${name.strIngredient4}</h4>
+    <h4> ${name.strIngredient5}</h4>
+    <h4> ${name.strIngredient6}</h4>
+    <h4> ${name.strIngredient7}</h4>
+    <h4> ${name.strIngredient8}</h4>
+    <h4> ${name.strIngredient9}</h4>
+    `
+    ingridentInfo.innerHTML = ingridents;
+    ingri.appendChild(ingridentInfo);
 }

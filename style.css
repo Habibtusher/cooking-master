@@ -15,3 +15,15 @@ body{
     width: 80%;
     margin: 0 auto;
 }
+.ingrident{
+    text-align: center;
+}
+.ingrident img{
+    width: 250px;
+    border-radius: 20px;
+}
+#mealBody h1{
+    color: brown;
+    font-size: 40px;
+    margin-left: 40px;
+}
